@@ -1,0 +1,51 @@
+buildscript {
+    ext {
+        springBootVersion = '2.3.12.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group = 'com.rgbplace'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.69'
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    compileOnly 'org.projectlombok:lombok'
+
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'com.auth0:java-jwt:3.18.3'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
